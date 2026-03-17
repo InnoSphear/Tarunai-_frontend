@@ -24,7 +24,7 @@ const PageWrap = ({ children }) => (
 const App = () => {
   const location = useLocation()
   return (
-    <div className="min-h-screen bg-[var(--color-ivory)] text-[var(--color-text-primary)]">
+    <div className="min-h-screen bg-[var(--color-ivory)] text-[var(--color-text-primary)] overflow-x-hidden">
       <Header />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>

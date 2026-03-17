@@ -16,7 +16,7 @@ const Header = () => {
   }, [isOpen])
 
   return (
-    <header className="sticky top-0 z-30 border-b border-black/10 bg-[var(--color-ivory)]/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-30 border-b bg-white ">
       
       {/* CONTAINER */}
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
@@ -68,6 +68,7 @@ const Header = () => {
           <span className="flex flex-col gap-1">
             <span className="h-0.5 w-5 bg-[var(--color-dark)]"></span>
             <span className="h-0.5 w-5 bg-[var(--color-dark)]"></span>
+            <span className="h-0.5 w-5 bg-[var(--color-dark)]"></span>
           </span>
         </button>
       </div>
@@ -98,9 +99,10 @@ const Header = () => {
           
           {/* HEADER */}
           <div className="flex items-center bg-white justify-between ">
-            <p className="text-xs uppercase tracking-[0.3em] ">
+            <p className="text-md font-bold uppercase tracking-[0.3em] ">
               Menu
             </p>
+            
             <button
               className="flex h-9 w-9 items-center justify-center rounded-full border border-black/10"
               onClick={closeMenu}
@@ -108,9 +110,9 @@ const Header = () => {
               <span className="text-lg">×</span>
             </button>
           </div>
-
+            <hr />
           {/* NAV LINKS */}
-          <div className=" flex flex-col bg-white gap-6 text-sm uppercase tracking-[0.3em]">
+          <div className="mt-5 flex flex-col bg-white gap-6 text-sm uppercase tracking-[0.3em]">
             {[
               { to: "/", label: "Home" },
               { to: "/spaces", label: "Spaces" },
