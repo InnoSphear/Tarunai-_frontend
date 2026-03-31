@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Link } from 'react-router-dom'
 import { ikSrc } from '../utils/imageKit'
 import heroImage from '../assets/DSC_1837.JPG'
+import heroVideo from '../assets/Tarunai.mov'
 import journeyLandscape from '../assets/DSC03980.JPG'
 import journeyCouple from '../assets/DSC03969.JPG'
 import spaceBanquet from '../assets/DSC03966.JPG'
@@ -292,12 +293,22 @@ const Home = () => {
         ref={heroRef}
         className="relative flex min-h-[88vh] items-center overflow-hidden"
       >
-        <img
+        <video
           ref={heroImageRef}
-          src={ikSrc(heroImage, 'DSC_1837.JPG', 'tr=w-2200,q-82')}
-          alt="Luxury wedding at Tarunai Grand Banquet"
-          className="absolute inset-0 h-full w-full scale-105 object-cover"
-          loading="lazy"
+          src={heroVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 object-cover"
+          style={{ 
+            minWidth: '100%',
+            minHeight: '100%',
+            // width: 'auto',
+            // height: 'auto',
+            transform: 'rotate(-90deg) scale(1.78)',
+            transformOrigin: 'center center'
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/30"></div>
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[var(--color-ivory)] to-transparent"></div>
