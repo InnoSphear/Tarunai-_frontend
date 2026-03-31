@@ -26,6 +26,12 @@ import suite3 from '../assets/DSC_1859.JPG'
 import suite4 from '../assets/DSC_1862.JPG'
 import suite5 from '../assets/DSC_1866.JPG'
 import suite6 from '../assets/DSC_1848.JPG'
+import pkg1 from '../assets/DSC_1837.JPG'
+import pkg2 from '../assets/DSC03980.JPG'
+import pkg3 from '../assets/DSC03969.JPG'
+import pkg4 from '../assets/DSC03984.JPG'
+import pkg5 from '../assets/DSC_1859.JPG'
+import pkg6 from '../assets/DSC_1862.JPG'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -35,7 +41,9 @@ const Home = () => {
   const [activePackage, setActivePackage] = useState('wedding')
   const [lightbox, setLightbox] = useState(null)
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [currentPackageSlide, setCurrentPackageSlide] = useState(0)
   const slideInterval = useRef(null)
+  const packageSlideInterval = useRef(null)
 
   const signatureSuite = useMemo(
     () => [
@@ -79,6 +87,48 @@ const Home = () => {
     []
   )
 
+  const packageCarousel = useMemo(
+    () => [
+      {
+        image: pkg1,
+        key: 'DSC_1837.JPG',
+        title: 'Grand Wedding Moments',
+        description: 'Beautiful wedding celebrations captured forever',
+      },
+      {
+        image: pkg2,
+        key: 'DSC03980.JPG',
+        title: 'Stunning Decor',
+        description: 'Elegant decorations for your special day',
+      },
+      {
+        image: pkg3,
+        key: 'DSC03969.JPG',
+        title: 'Romantic Celebrations',
+        description: 'Love and joy captured in every moment',
+      },
+      {
+        image: pkg4,
+        key: 'DSC03984.JPG',
+        title: 'Grand Stage Setup',
+        description: 'Beautiful stage designs for ceremonies',
+      },
+      {
+        image: pkg5,
+        key: 'DSC_1859.JPG',
+        title: 'Celebration Highlights',
+        description: 'Precious memories from our venue',
+      },
+      {
+        image: pkg6,
+        key: 'DSC_1862.JPG',
+        title: 'Unforgettable Events',
+        description: 'Moments that last a lifetime',
+      },
+    ],
+    []
+  )
+
   const startAutoSlide = () => {
     slideInterval.current = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % signatureSuite.length)
@@ -91,15 +141,37 @@ const Home = () => {
     }
   }
 
+  const startPackageAutoSlide = () => {
+    packageSlideInterval.current = setInterval(() => {
+      setCurrentPackageSlide((prev) => (prev + 1) % packageCarousel.length)
+    }, 4000)
+  }
+
+  const stopPackageAutoSlide = () => {
+    if (packageSlideInterval.current) {
+      clearInterval(packageSlideInterval.current)
+    }
+  }
+
   useEffect(() => {
     startAutoSlide()
-    return () => stopAutoSlide()
-  }, [signatureSuite.length])
+    startPackageAutoSlide()
+    return () => {
+      stopAutoSlide()
+      stopPackageAutoSlide()
+    }
+  }, [signatureSuite.length, packageCarousel.length])
 
   const handleThumbnailClick = (index) => {
     setCurrentSlide(index)
     stopAutoSlide()
     startAutoSlide()
+  }
+
+  const handlePackageThumbnailClick = (index) => {
+    setCurrentPackageSlide(index)
+    stopPackageAutoSlide()
+    startPackageAutoSlide()
   }
 
   const timelessSpaces = useMemo(
@@ -282,6 +354,30 @@ const Home = () => {
           }
         )
       })
+
+      const counters = document.querySelectorAll('[data-count]')
+      counters.forEach((counter) => {
+        const target = parseInt(counter.getAttribute('data-count'))
+        const obj = { value: 0 }
+        gsap.to(obj, {
+          value: target,
+          duration: 2,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: counter,
+            start: 'top 80%',
+          },
+          onUpdate: () => {
+            if (target >= 1000) {
+              counter.textContent = Math.floor(obj.value).toLocaleString() + '+'
+            } else if (target >= 50) {
+              counter.textContent = Math.floor(obj.value) + '+'
+            } else {
+              counter.textContent = Math.floor(obj.value) + '+'
+            }
+          },
+        })
+      })
     })
 
     return () => ctx.revert()
@@ -293,23 +389,17 @@ const Home = () => {
         ref={heroRef}
         className="relative flex min-h-[88vh] items-center overflow-hidden"
       >
-        <video
-          ref={heroImageRef}
-          src={heroVideo}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 object-cover"
-          style={{ 
-            minWidth: '100%',
-            minHeight: '100%',
-            // width: 'auto',
-            // height: 'auto',
-            transform: 'rotate(-90deg) scale(1.78)',
-            transformOrigin: 'center center'
-          }}
-        />
+        <div className="absolute inset-0 overflow-hidden">
+          <video
+            ref={heroImageRef}
+            src={heroVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="hero-video-desktop absolute inset-0 w-full h-full object-cover"
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/30"></div>
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[var(--color-ivory)] to-transparent"></div>
 
@@ -615,6 +705,98 @@ const Home = () => {
                 </div>
               </motion.div>
             </AnimatePresence>
+          </div>
+        </div>
+      </section>
+
+      {/* {/* <section className="section-shell bg-[var(--color-dark)] py-16">
+        <div className="mx-auto w-full max-w-6xl px-6">
+          <div className="text-center mb-10">
+            <p className="eyebrow text-[var(--color-gold)]">Our Work</p>
+            <h2 className="section-title text-white">
+              Celebrations Gallery
+            </h2>
+            <p className="mt-4 text-sm text-white/70 max-w-2xl mx-auto">
+              See the beautiful moments and celebrations captured at Tarunai Grand Banquet.
+              Every event is special and we love being part of your journey.
+            </p>
+          </div>
+
+          <div className="mt-8">
+            <div className="relative overflow-hidden rounded-3xl">
+              <div className="aspect-[16/9] md:aspect-[21/9] relative">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentPackageSlide}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="absolute inset-0"
+                  >
+                    <img
+                      src={ikSrc(packageCarousel[currentPackageSlide].image, packageCarousel[currentPackageSlide].key, 'tr=w-1800,q-85')}
+                      alt={packageCarousel[currentPackageSlide].title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 text-white">
+                      <h3 className="text-xl md:text-2xl font-semibold">{packageCarousel[currentPackageSlide].title}</h3>
+                      <p className="mt-2 text-sm text-white/80">{packageCarousel[currentPackageSlide].description}</p>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+
+            <div className="mt-6 flex justify-center gap-3">
+              {packageCarousel.map((item, index) => (
+                <button
+                  key={item.key}
+                  onClick={() => handlePackageThumbnailClick(index)}
+                  className={`relative overflow-hidden rounded-xl transition-all duration-300 ${
+                    currentPackageSlide === index
+                      ? 'ring-2 ring-[var(--color-gold)] scale-105'
+                      : 'opacity-60 hover:opacity-100'
+                  }`}
+                >
+                  <img
+                    src={ikSrc(item.image, item.key, 'tr=w-300,q-70')}
+                    alt={item.title}
+                    className="w-20 h-16 md:w-28 md:h-20 object-cover"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link to="/gallery" className="lux-btn lux-btn-solid">
+              View Full Gallery
+            </Link>
+          </div>
+        </div>
+      </section> */}
+
+      <section className="py-16 bg-[var(--color-dark)]">
+        <div className="mx-auto w-full max-w-6xl px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold text-[var(--color-gold)]" data-count="100">100+</div>
+              <p className="mt-2 text-sm md:text-base text-white/70 uppercase tracking-wider">Events</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold text-[var(--color-gold)]" data-count="8">8+</div>
+              <p className="mt-2 text-sm md:text-base text-white/70 uppercase tracking-wider">Rooms</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold text-[var(--color-gold)]" data-count="2500">2500+</div>
+              <p className="mt-2 text-sm md:text-base text-white/70 uppercase tracking-wider">Guest Capacity</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold text-[var(--color-gold)]" >24/7</div>
+              <p className="mt-2 text-sm md:text-base text-white/70 uppercase tracking-wider">Concierge service</p>
+            </div>
           </div>
         </div>
       </section>
