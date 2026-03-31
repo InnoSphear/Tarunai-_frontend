@@ -27,14 +27,14 @@ const Header = () => {
           className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm uppercase tracking-[0.25em] sm:tracking-[0.3em]"
         >
           <span className="h-7 w-7 sm:h-8 sm:w-8 rounded-full border border-[var(--color-gold)]"></span>
-          Tarunai Banquets
+          Tarunai Grand Banquet
         </Link>
 
         {/* DESKTOP NAV */}
         <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-xs uppercase tracking-[0.25em] text-[var(--color-text-secondary)]">
           {[
             { to: "/", label: "Home" },
-            { to: "/spaces", label: "Spaces" },
+            { to: "/spaces", label: "Our Venue" },
             { to: "/packages", label: "Packages" },
             { to: "/gallery", label: "Gallery" },
             { to: "/contact", label: "Contact" },

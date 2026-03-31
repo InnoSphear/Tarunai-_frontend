@@ -19,6 +19,12 @@ import packageWedding from '../assets/DSC_1862.JPG'
 import packageBirthday from '../assets/DSC03962.JPG'
 import packageCorporate from '../assets/DSC03980.JPG'
 import ctaImage from '../assets/DSC_1848.JPG'
+import suite1 from '../assets/DSC_1845.JPG'
+import suite2 from '../assets/DSC_1856.JPG'
+import suite3 from '../assets/DSC_1859.JPG'
+import suite4 from '../assets/DSC_1862.JPG'
+import suite5 from '../assets/DSC_1866.JPG'
+import suite6 from '../assets/DSC_1848.JPG'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -27,16 +33,83 @@ const Home = () => {
   const heroImageRef = useRef(null)
   const [activePackage, setActivePackage] = useState('wedding')
   const [lightbox, setLightbox] = useState(null)
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const slideInterval = useRef(null)
+
+  const signatureSuite = useMemo(
+    () => [
+      {
+        image: suite1,
+        key: 'DSC_1845.JPG',
+        title: 'Grand Entry Experience',
+        description: 'Beautiful entrance that welcomes your guests with elegance',
+      },
+      {
+        image: suite2,
+        key: 'DSC_1856.JPG',
+        title: 'Premium Pavilion Setup',
+        description: 'Perfect outdoor space for ceremonies and celebrations',
+      },
+      {
+        image: suite3,
+        key: 'DSC_1859.JPG',
+        title: 'Grand Lawn Area',
+        description: 'Spacious green area for grand outdoor events',
+      },
+      {
+        image: suite4,
+        key: 'DSC_1862.JPG',
+        title: 'Luxury Wedding Decor',
+        description: 'Stunning wedding setup with royal decorations',
+      },
+      {
+        image: suite5,
+        key: 'DSC_1866.JPG',
+        title: 'Elegant Dining Space',
+        description: 'Beautiful dining area for grand celebrations',
+      },
+      {
+        image: suite6,
+        key: 'DSC_1848.JPG',
+        title: 'Ballroom Elegance',
+        description: 'Magnificent ballroom for grand receptions',
+      },
+    ],
+    []
+  )
+
+  const startAutoSlide = () => {
+    slideInterval.current = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % signatureSuite.length)
+    }, 4000)
+  }
+
+  const stopAutoSlide = () => {
+    if (slideInterval.current) {
+      clearInterval(slideInterval.current)
+    }
+  }
+
+  useEffect(() => {
+    startAutoSlide()
+    return () => stopAutoSlide()
+  }, [signatureSuite.length])
+
+  const handleThumbnailClick = (index) => {
+    setCurrentSlide(index)
+    stopAutoSlide()
+    startAutoSlide()
+  }
 
   const timelessSpaces = useMemo(
     () => [
       {
-        title: 'Banquet Hall',
+        title: 'Grand Banquet Hall',
         image: spaceBanquet,
         key: 'DSC03966.JPG',
       },
       {
-        title: 'Lawn Area',
+        title: 'Grand Lawn Area',
         image: spaceLawn,
         key: 'DSC03987.JPG',
       },
@@ -55,6 +128,11 @@ const Home = () => {
         image: spaceDining,
         key: 'DSC_1866.JPG',
       },
+      {
+        title: 'Valley Parking',
+        image: spaceLawn,
+        key: 'DSC03987.JPG',
+      },
     ],
     []
   )
@@ -64,21 +142,21 @@ const Home = () => {
       {
         title: 'Grand Ballroom',
         description:
-          'A chandelier-lit ballroom crafted for regal wedding entrances and lavish receptions.',
+          'A beautiful chandelier-lit ballroom for royal wedding entrances and grand receptions.',
         image: highlightBallroom,
         key: 'DSC_1848.JPG',
       },
       {
         title: 'Covered Pavilion',
         description:
-          'Open-air elegance with weather-friendly comfort for sunset ceremonies and soirees.',
+          'Open-air beauty with comfortable weather-friendly setup for sunset ceremonies and evening parties.',
         image: highlightPavilion,
         key: 'DSC_1856.JPG',
       },
       {
-        title: 'Open Lawn',
+        title: 'Grand Open Lawn',
         description:
-          'A sprawling green canvas for grand pheras, festive mehendi, and starlit dinners.',
+          'A wide green space for grand wedding ceremonies, festive celebrations, and beautiful dinner setups.',
         image: highlightLawn,
         key: 'DSC_1859.JPG',
       },
@@ -93,24 +171,32 @@ const Home = () => {
         image: packageWedding,
         key: 'DSC_1862.JPG',
         description:
-          'Signature wedding journeys with bespoke decor, curated rituals, and royal hospitality.',
-        features: ['Bridal suite access', 'Stage styling', 'Gourmet menu design'],
+          'Beautiful grand wedding celebrations with stunning decor, special rituals, and royal hospitality.',
+        features: ['Bridal suite access', 'Stage styling', 'Custom gourmet menu', 'Wedding decor setup', 'Grand mandap decoration'],
       },
       birthday: {
         label: 'Birthday',
         image: packageBirthday,
         key: 'DSC03962.JPG',
         description:
-          'Celebrate milestones with immersive themes, luxe dining, and photo-ready lighting.',
-        features: ['Theme-led decor', 'Kids and family zones', 'Custom dessert bar'],
+          'Fun birthday celebrations with beautiful themes, great food, and photo-ready lighting.',
+        features: ['Theme-led decor', 'Kids and family zones', 'Custom dessert bar', 'Party setup', 'Balloon decorations'],
+      },
+      anniversary: {
+        label: 'Anniversary',
+        image: packageWedding,
+        key: 'DSC_1862.JPG',
+        description:
+          'Special anniversary celebrations with romantic decor, couple specials, and memorable experiences.',
+        features: ['Romantic setup', 'Couple dinner', 'Photo session', 'Special cake', 'Flower decorations'],
       },
       corporate: {
         label: 'Corporate',
         image: packageCorporate,
         key: 'DSC03980.JPG',
         description:
-          'High-impact corporate gatherings with seamless AV, branding, and executive service.',
-        features: ['Stage and AV setup', 'Breakout lounges', 'Dedicated concierge'],
+          'Professional corporate events with great AV setup, branding, and executive hospitality.',
+        features: ['Stage and AV setup', 'Meeting rooms', 'Dedicated service', 'Brand setup', 'Executive lounge'],
       },
     }),
     []
@@ -209,7 +295,7 @@ const Home = () => {
         <img
           ref={heroImageRef}
           src={ikSrc(heroImage, 'DSC_1837.JPG', 'tr=w-2200,q-82')}
-          alt="Luxury wedding at Tarunai Banquets"
+          alt="Luxury wedding at Tarunai Grand Banquet"
           className="absolute inset-0 h-full w-full scale-105 object-cover"
           loading="lazy"
         />
@@ -223,7 +309,7 @@ const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Bhagwat Nagar, Patna, Bihar
+            
           </motion.p>
           <motion.h1
             className="text-4xl font-semibold leading-tight tracking-tight md:text-6xl lg:text-7xl"
@@ -231,7 +317,7 @@ const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.1 }}
           >
-            Where Moments Become Royal Memories
+            Grand Moments That Last Forever
           </motion.h1>
           <motion.p
             className="mt-6 max-w-2xl text-base text-white/80 md:text-lg"
@@ -239,9 +325,9 @@ const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            A cinematic destination for weddings, receptions, and celebrations
-            designed with regal hospitality, curated experiences, and elegant
-            spaces that glow from dawn ceremonies to starlit soirees.
+            A beautiful grand destination for weddings, receptions, birthdays, anniversaries, and celebrations
+            with royal hospitality, curated experiences, and elegant
+            spaces that shine from morning ceremonies to starlit evening parties.
           </motion.p>
           <motion.div
             className="mt-10 flex flex-wrap gap-4"
@@ -263,9 +349,9 @@ const Home = () => {
         <div className="mx-auto grid w-full max-w-6xl gap-12 px-6 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-8">
             <div className="reveal-up">
-              <p className="eyebrow">The Journey of Tarunai Banquets</p>
+              <p className="eyebrow">The Grand Journey of Tarunai Grand Banquet</p>
               <h2 className="section-title">
-                A legacy of celebrations crafted for every story.
+                A beautiful legacy of celebrations for every special moment.
               </h2>
             </div>
             <div className="grid gap-6 md:grid-cols-2">
@@ -289,13 +375,13 @@ const Home = () => {
           </div>
           <div className="flex flex-col justify-center gap-6">
             <p className="reveal-up text-sm leading-relaxed text-[var(--color-text-secondary)]">
-              From intimate mehendi mornings to grand ballroom receptions, our
-              team curates an immersive wedding journey with bespoke decor,
-              artisanal dining, and luminous experiences that feel cinematic at
-              every turn.
+              From beautiful mehendi ceremonies to grand ballroom receptions, our
+              team creates amazing wedding celebrations with stunning decor,
+              great food, and magical experiences that feel like a dream come true.
+              We make every moment special with our royal hospitality and attention to detail.
             </p>
             <Link to="/contact" className="lux-btn lux-btn-solid w-fit reveal-up">
-              Reserve Your Date
+              Block Your Date
             </Link>
           </div>
         </div>
@@ -330,8 +416,8 @@ const Home = () => {
                       {space.title}
                     </p>
                     <p className="mt-2 text-xs text-white/70 opacity-0 transition duration-500 group-hover:opacity-100">
-                      Discover elevated experiences crafted for ceremonies,
-                      dinners, and unforgettable celebrations.
+                      Discover grand experiences crafted for ceremonies,
+                      weddings, dinners, and unforgettable celebrations.
                     </p>
                   </div>
                 </div>
@@ -346,12 +432,81 @@ const Home = () => {
         </div>
       </section>
 
+      <section className="section-shell bg-[var(--color-dark)] py-16">
+        <div className="mx-auto w-full max-w-6xl px-6">
+          <div className="text-center mb-10">
+            <p className="eyebrow text-[var(--color-gold)]">Premium Collection</p>
+            <h2 className="section-title text-white">
+              Our Signature Suite
+            </h2>
+            <p className="mt-4 text-sm text-white/70 max-w-2xl mx-auto">
+              Experience the finest venues and decorations at Tarunai Grand Banquet. 
+              Each space is designed to make your special moments truly memorable.
+            </p>
+          </div>
+
+          <div className="mt-8">
+            <div className="relative overflow-hidden rounded-3xl">
+              <div className="aspect-[16/9] md:aspect-[21/9] relative">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentSlide}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="absolute inset-0"
+                  >
+                    <img
+                      src={ikSrc(signatureSuite[currentSlide].image, signatureSuite[currentSlide].key, 'tr=w-1800,q-85')}
+                      alt={signatureSuite[currentSlide].title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 text-white">
+                      <h3 className="text-xl md:text-2xl font-semibold">{signatureSuite[currentSlide].title}</h3>
+                      <p className="mt-2 text-sm text-white/80">{signatureSuite[currentSlide].description}</p>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+
+            <div className="mt-6 flex justify-center gap-3">
+              {signatureSuite.map((item, index) => (
+                <button
+                  key={item.key}
+                  onClick={() => handleThumbnailClick(index)}
+                  className={`relative overflow-hidden rounded-xl transition-all duration-300 ${
+                    currentSlide === index
+                      ? 'ring-2 ring-[var(--color-gold)] scale-105'
+                      : 'opacity-60 hover:opacity-100'
+                  }`}
+                >
+                  <img
+                    src={ikSrc(item.image, item.key, 'tr=w-300,q-70')}
+                    alt={item.title}
+                    className="w-20 h-16 md:w-28 md:h-20 object-cover"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link to="/gallery" className="lux-btn lux-btn-solid">
+              View Full Gallery
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="section-shell">
         <div className="mx-auto w-full max-w-6xl px-6">
-          <div className="reveal-up">
+            <div className="reveal-up">
             <p className="eyebrow">Venue Highlights</p>
             <h2 className="section-title">
-              Crafted for ceremonial grandeur and premium hospitality.
+              Crafted for grand ceremonies and premium hospitality.
             </h2>
           </div>
           <div className="mt-10 grid gap-6 lg:grid-cols-3 stagger-card">
@@ -390,8 +545,8 @@ const Home = () => {
           <div className="reveal-up">
             <p className="eyebrow">Signature Packages</p>
             <h2 className="section-title">
-              Curated celebrations for weddings, birthdays, and corporate
-              milestones.
+              Grand celebrations for weddings, birthdays, anniversaries, and corporate
+              events.
             </h2>
           </div>
 
@@ -455,10 +610,10 @@ const Home = () => {
 
       <section className="section-shell">
         <div className="mx-auto w-full max-w-6xl px-6">
-          <div className="reveal-up">
+            <div className="reveal-up">
             <p className="eyebrow">Gallery Preview</p>
             <h2 className="section-title">
-              Real weddings. Real joy. Captured in luminous detail.
+              Real weddings, anniversaries, and celebrations. Real joy. Beautiful memories.
             </h2>
           </div>
 
@@ -492,7 +647,7 @@ const Home = () => {
           <div className="relative overflow-hidden rounded-[40px] bg-[var(--color-dark)]">
             <img
               src={ikSrc(ctaImage, 'DSC_1848.JPG', 'tr=w-1800,q-80')}
-              alt="Celebrate at Tarunai Banquets"
+              alt="Celebrate at Tarunai Grand Banquet"
               className="absolute inset-0 h-full w-full object-cover opacity-40"
               loading="lazy"
             />
@@ -505,7 +660,7 @@ const Home = () => {
                   Celebrate Your Special Day With Us
                 </h2>
                 <p className="text-sm text-white/70">
-                  Connect with our wedding concierge to design a regal
+                  Connect with our grand wedding team to design a beautiful
                   experience tailored to your vision.
                 </p>
               </div>

@@ -17,12 +17,14 @@ const Packages = () => {
         image: packageWedding,
         key: 'DSC_1862.JPG',
         description:
-          'Royal wedding planning with elevated decor, seamless guest flow, and premium hospitality.',
+          'Grand wedding celebrations with beautiful decor, smooth guest flow, and royal hospitality.',
         features: [
           'Wedding concierge',
           'Floral and stage styling',
           'Customized menus',
           'Luxury bridal suite',
+          'Grand mandap decoration',
+          'Wedding photography',
         ],
       },
       birthday: {
@@ -30,12 +32,29 @@ const Packages = () => {
         image: packageBirthday,
         key: 'DSC03962.JPG',
         description:
-          'Immersive birthday celebrations with bespoke themes, lighting, and concierge dining.',
+          'Fun birthday celebrations with beautiful themes, great lighting, and amazing food.',
         features: [
           'Personalized themes',
           'Interactive dessert bar',
           'Photo-ready lighting',
           'Family lounge areas',
+          'Balloon decorations',
+          'Party favors',
+        ],
+      },
+      anniversary: {
+        label: 'Anniversary',
+        image: packageWedding,
+        key: 'DSC_1862.JPG',
+        description:
+          'Special anniversary celebrations with romantic decor, couple specials, and memorable experiences.',
+        features: [
+          'Romantic setup',
+          'Couple dinner arrangement',
+          'Photo session',
+          'Special anniversary cake',
+          'Flower decorations',
+          'Love story display',
         ],
       },
       corporate: {
@@ -43,12 +62,14 @@ const Packages = () => {
         image: packageCorporate,
         key: 'DSC03980.JPG',
         description:
-          'Corporate events with professional AV, branding moments, and executive hospitality.',
+          'Professional corporate events with great AV setup, branding, and executive hospitality.',
         features: [
           'Executive welcome zone',
           'Stage and AV setup',
-          'Breakout lounges',
+          'Meeting rooms',
           'Dedicated service staff',
+          'Brand setup',
+          'Executive lounge',
         ],
       },
     }),
@@ -67,13 +88,13 @@ const Packages = () => {
         <div className="absolute inset-0 bg-black/60"></div>
         <div className="relative mx-auto flex min-h-[60vh] w-full max-w-6xl items-center px-6 py-20 text-white">
           <div className="max-w-2xl space-y-6">
-            <p className="eyebrow text-[var(--color-gold)]">Packages</p>
+            <button className="text-black/80  rounded-2xl border px-4 py-3 bg-[var(--color-gold)]">Packages</button>
             <h1 className="text-4xl font-semibold leading-tight md:text-6xl">
-              Tailored experiences for every celebration.
+              Grand experiences for every celebration.
             </h1>
             <p className="text-sm text-white/75">
-              Choose a curated package and personalize every detail with our
-              event designers and hospitality team.
+              Choose a beautiful package and customize every detail with our
+              expert event team and hospitality staff.
             </p>
             <Link to="/contact" className="lux-btn lux-btn-solid">
               Start Planning

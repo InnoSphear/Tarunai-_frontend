@@ -11,39 +11,46 @@ import spaceDining from '../assets/DSC_1866.JPG'
 
 const spaces = [
   {
-    title: 'Banquet Hall',
+    title: 'Grand Banquet Hall',
     description:
-      'A grand indoor hall with refined lighting, soft acoustics, and ceremonial staging.',
+      'A beautiful grand indoor hall with elegant lighting, nice acoustics, and ceremonial staging.',
     image: spaceBanquet,
     key: 'DSC03966.JPG',
   },
   {
-    title: 'Lawn Area',
+    title: 'Grand Lawn Area',
     description:
-      'Wide open greens ideal for pheras, open-air receptions, and sunset cocktails.',
+      'Wide open greens perfect for wedding ceremonies, open-air receptions, and beautiful evening celebrations.',
     image: spaceLawn,
     key: 'DSC03987.JPG',
   },
   {
     title: 'Stage Setup',
     description:
-      'A theatrical stage layout with flexible styling for bridal entries and performances.',
+      'A beautiful stage setup with flexible styling for wedding entries and performances.',
     image: spaceStage,
     key: 'DSC03984.JPG',
   },
   {
     title: 'Entry Arch',
     description:
-      'A regal arrival walkway for grand entrances and welcome ceremonies.',
+      'A grand arrival walkway for beautiful entrances and welcome ceremonies.',
     image: spaceEntry,
     key: 'DSC_1845.JPG',
   },
   {
     title: 'Dining Area',
     description:
-      'Elegant dining experience with ambient lighting, artisanal spreads, and seamless service.',
+      'Elegant dining experience with beautiful lighting, great food, and smooth service.',
     image: spaceDining,
     key: 'DSC_1866.JPG',
+  },
+  {
+    title: 'Valley Parking',
+    description:
+      'Spacious parking area for all your guests with easy access and security.',
+    image: spaceLawn,
+    key: 'DSC03987.JPG',
   },
 ]
 
@@ -53,24 +60,24 @@ const Spaces = () => {
       <section className="relative overflow-hidden">
         <img
           src={ikSrc(heroImage, 'DSC03966.JPG', 'tr=w-2200,q-82')}
-          alt="Tarunai Banquets spaces"
+          alt="Tarunai Grand Banquet spaces"
           className="absolute inset-0 h-full w-full object-cover"
           loading="lazy"
         />
         <div className="absolute inset-0 bg-black/60"></div>
         <div className="relative mx-auto flex min-h-[60vh] w-full max-w-6xl items-center px-6 py-20 text-white">
           <div className="max-w-2xl space-y-6">
-            <p className="eyebrow text-[var(--color-gold)]">Event Spaces</p>
+            <button className=" text-[var(--color-black)] px-4 py-3 rounded-2xl border bg-[var(--color-gold)]">Event Spaces</button>
             <h1 className="text-4xl font-semibold leading-tight md:text-6xl">
-              Spaces that adapt to every ceremony, celebration, and corporate
-              milestone.
+              Beautiful spaces for every ceremony, celebration, wedding, and corporate
+              event.
             </h1>
             <p className="text-sm text-white/75">
-              Explore a curated mix of indoor grandeur and open-air elegance,
-              designed for flexible layouts and cinematic storytelling.
+              Explore a beautiful mix of indoor grandeur and open-air elegance,
+              designed for flexible layouts and amazing celebrations.
             </p>
             <Link to="/contact" className="lux-btn lux-btn-solid">
-              Schedule a Tour
+              Meet US
             </Link>
           </div>
         </div>

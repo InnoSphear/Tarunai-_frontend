@@ -54,20 +54,20 @@ const Contact = () => {
       <section className="relative overflow-hidden">
         <img
           src={ikSrc(heroImage, 'DSC_1848.JPG', 'tr=w-2200,q-82')}
-          alt="Book Tarunai Banquets"
+          alt="Book Tarunai Grand Banquet"
           className="absolute inset-0 h-full w-full object-cover"
           loading="lazy"
         />
         <div className="absolute inset-0 bg-black/65"></div>
         <div className="relative mx-auto flex min-h-[55vh] w-full max-w-6xl items-center px-6 py-20 text-white">
           <div className="max-w-2xl space-y-6">
-            <p className="eyebrow text-[var(--color-gold)]">Contact</p>
+            <button className="text-black/80  rounded-2xl border px-4 py-3 bg-[var(--color-gold)]">Contact</button>
             <h1 className="text-4xl font-semibold leading-tight md:text-6xl">
-              Begin your celebration story with our concierge team.
+              Begin your grand celebration with our team.
             </h1>
             <p className="text-sm text-white/75">
               Share your event date and preferences, and our planners will
-              curate a premium proposal for your celebration.
+              create a beautiful proposal for your celebration.
             </p>
           </div>
         </div>
@@ -179,10 +179,10 @@ const Contact = () => {
               <div className="rounded-3xl bg-[var(--color-beige)] p-6">
                 <p className="eyebrow">Visit Us</p>
                 <h3 className="mt-3 text-2xl font-semibold">
-                  Tarunai Banquets
+                  Tarunai Grand Banquet
                 </h3>
                 <p className="mt-3 text-sm text-[var(--color-text-secondary)]">
-                  Bhagwat Nagar, Patna, Bihar - Premium banquet hall and luxury wedding lawn.
+                  Bhagwat Nagar, Patna, Bihar - Grand banquet hall and luxury wedding lawn.
                 </p>
                 <div className="mt-6 space-y-2 text-sm text-[var(--color-text-secondary)]">
                   <p>Phone: +91 00000 00000</p>
@@ -192,7 +192,7 @@ const Contact = () => {
               <div className="rounded-3xl bg-[var(--color-dark)] p-6 text-white">
                 <p className="eyebrow text-[var(--color-gold)]">Next Step</p>
                 <p className="mt-3 text-sm text-white/70">
-                  Prefer to explore first? Browse our curated spaces and gallery
+                  Want to explore first? Browse our beautiful spaces and gallery
                   before booking a tour.
                 </p>
                 <div className="mt-6 flex gap-3">

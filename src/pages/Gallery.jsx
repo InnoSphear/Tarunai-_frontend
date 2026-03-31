@@ -50,20 +50,20 @@ const Gallery = () => {
       <section className="relative overflow-hidden">
         <img
           src={ikSrc(heroImage, 'DSC_1859.JPG', 'tr=w-2200,q-82')}
-          alt="Tarunai Banquets gallery"
+          alt="Tarunai Grand Banquet gallery"
           className="absolute inset-0 h-full w-full object-cover"
           loading="lazy"
         />
         <div className="absolute inset-0 bg-black/60"></div>
         <div className="relative mx-auto flex min-h-[50vh] w-full max-w-6xl items-center px-6 py-20 text-white">
           <div className="max-w-2xl space-y-6">
-            <p className="eyebrow text-[var(--color-gold)]">Gallery</p>
+            <button className="text-black/80  rounded-2xl border px-4 py-3 bg-[var(--color-gold)]">Gallery</button>
             <h1 className="text-4xl font-semibold leading-tight md:text-6xl">
-              A luminous archive of real celebrations and curated moments.
+              A beautiful collection of real celebrations and special moments.
             </h1>
             <p className="text-sm text-white/75">
-              Every frame captures the warmth, elegance, and cinematic glow of
-              Tarunai Banquets.
+              Every picture captures the warmth, elegance, and beauty of
+              Tarunai Grand Banquet.
             </p>
           </div>
         </div>
@@ -72,7 +72,7 @@ const Gallery = () => {
       <section className="section-shell">
         <div className="mx-auto w-full max-w-6xl px-6">
           <div className="flex flex-wrap gap-3">
-            {['wedding', 'birthday', 'corporate', 'general'].map((category) => (
+            {['wedding', 'birthday', 'anniversary', 'corporate', 'general'].map((category) => (
               <button
                 key={category}
                 className={`tab-btn ${activeCategory === category ? 'tab-btn-active' : ''}`}
